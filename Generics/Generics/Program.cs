@@ -34,6 +34,7 @@ namespace Generics
                 Console.WriteLine(MinBinaryHeap.ValuesOfBinaryHeap[i]);
             }
 
+
         }
 
     }

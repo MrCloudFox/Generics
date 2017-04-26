@@ -21,18 +21,25 @@ namespace Generics
 
         public override void Insert(T value)
         {
-            ValuesOfBinaryHeap.Add(value);
-            int i = HeapSize - 1;
-            int parent = (i - 1) / 2;
-
-            while (i > 0 && ValuesOfBinaryHeap[i].CompareTo(ValuesOfBinaryHeap[parent]) < 0)
+            if (ValuesOfBinaryHeap.Contains(value))
             {
-                T tempValue = ValuesOfBinaryHeap[i];
-                ValuesOfBinaryHeap[i] = ValuesOfBinaryHeap[parent];
-                ValuesOfBinaryHeap[parent] = tempValue;
+                throw new ArgumentException("Вставляемый элемент уже имеется");
+            }
+            else
+            {
+                ValuesOfBinaryHeap.Add(value);
+                int i = HeapSize - 1;
+                int parent = (i - 1) / 2;
 
-                i = parent;
-                parent = (i - 1) / 2;
+                while (i > 0 && ValuesOfBinaryHeap[i].CompareTo(ValuesOfBinaryHeap[parent]) < 0)
+                {
+                    T tempValue = ValuesOfBinaryHeap[i];
+                    ValuesOfBinaryHeap[i] = ValuesOfBinaryHeap[parent];
+                    ValuesOfBinaryHeap[parent] = tempValue;
+
+                    i = parent;
+                    parent = (i - 1) / 2;
+                }
             }
         }
 
